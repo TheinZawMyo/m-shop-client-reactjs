@@ -3,8 +3,9 @@
 :root {
   --primary-color: #f6b60d;
   --secondary-color: #ffee0a;
-  --background-color : #143d59;
-  --text-color: #f6b60d;
+  --background-color : #ffffff;
+  --text-color: #143d59;
+  --green-color: #728C00;
   --gray-color: #cecdcd;
 }
 
@@ -32,13 +33,49 @@ a {
 
 .container {
 	max-width: 1300px;
-	margin: 0 auto;
+	margin: 70px auto;
+  padding: 20px 10px;
 }
 
 .flex_container {
 	display: flex;
+  flex-direction: row;
 }
 
 .grid_container {
 	display: grid;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid var(--primary-color);
+  font-size: 15px;
+  color: var(--text-color);
+  box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  cursor: pointer;
+}
+
+
+.primary_btn {
+  background-color: var(--text-color);
+  color: var(--primary-color);
+}
+
+
+.primary_btn:hover {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.secondary_btn {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+
+.secondary_btn:hover {
+  background-color: var(--primary-color);
+  color: var(--text-color);
 }

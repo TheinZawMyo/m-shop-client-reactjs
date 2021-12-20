@@ -1,11 +1,13 @@
 header {
     width: 100%;
     top: 0;
+    position: fixed;
     left: 0;
     right: 0;
     background-color: var(--background-color);
     z-index: 10;
     box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+    /* border-bottom: 1px dashed var(--text-color); */
 }
 
 .nav_bar {
@@ -35,12 +37,12 @@ header {
 }
 
 .menu_item:hover {
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px double var(--text-color);
     
 }
 
-.menu_item:hover a {
-    color: var(--primary-color);
+.nav_bar a {
+    color: var(--text-color);
 }
 
 .logo_link {
