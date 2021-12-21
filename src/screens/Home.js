@@ -1,45 +1,48 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useContext } from "react";
 import mobile from "../assets/images/mobile.svg";
 import "../assets/css/home.css";
-import Service from "../Services/Service";
 import ProductCard from "../components/ProductCard";
+import { ProductContext } from "../context/ProductContext";
 
 function Home() {
-	const [products, setProducts] = useState([]);
-	useEffect(() => {
-		Service.getAllItem()
-				.then((res) => {
-					console.log(res.data.products.data);
-					let all_products = res.data.products.data;
-					setProducts(all_products);
-				})
-				.catch((err) => { console.log(err)});
+	const [search, setSearch] = useState("");
+	const { liveSearch } = useContext(ProductContext);
 
-	}, []);
+	const handleSearch = (e) => {
+		e.preventDefault();
+		liveSearch(search);
+	}
+
+	search === '' && liveSearch('');
+
+	// const {dispatch} = useContext(ProductContext);
+	// dispatch({type: 'ADD_TO_CART', id});
 	return (
 		<div className="container">
 			<div className="flex_container main">
 				<div className="main_wrapper">
-                    <span className="wrap_title">Shop on M-Shop</span>
-                    <div><button className="btn primary_btn">Shop More</button></div>
-                </div>
+					<span className="wrap_title">Shop on M-Shop</span>
+					<div>
+						<button className="btn primary_btn">Shop More</button>
+					</div>
+				</div>
 				<div className="main_wrapper">
 					<img src={mobile} alt="Iphone" className="title_image" />
 				</div>
 			</div>
 
 			<div className="search_container">
-				<input type="text" className="search_input" placeholder="Enter your search keyword"/>
+				<input
+					type="search"
+					className="search_input"
+					placeholder="Please search using phone model, eg: Iphone 13 pro"
+					onChange={(e) => setSearch(e.target.value)}
+				/>
+				<button className="btn primary_btn" onClick={handleSearch}>Search</button>
 			</div>
-			
+
 			<div className="card_container">
-				{
-					products.map((product) => {
-						return (
-							<ProductCard data={product} key={product.id}/>
-						)
-					})
-				}
+				<ProductCard />
 			</div>
 		</div>
 	);

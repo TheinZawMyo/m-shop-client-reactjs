@@ -1,8 +1,9 @@
 import http from "../HttpConfig";
 
 class Service {
-    getAllItem(){
-        return http.get('/products/list');
+    getAllItem(keyword){
+        // console.log(keyword)
+        return http.post(`/products/list?query=${keyword}`);
     }
 }
 
