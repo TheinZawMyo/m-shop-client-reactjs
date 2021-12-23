@@ -54,6 +54,7 @@ a {
   color: var(--text-color);
   box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
   margin: 10px;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -70,6 +71,7 @@ a {
 }
 
 .secondary_btn {
+  padding: 6px 20px;
   background-color: var(--background-color);
   color: var(--primary-color);
 }

@@ -1,27 +1,48 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import mobile from "../assets/images/mobile.svg";
 import "../assets/css/home.css";
 import ProductCard from "../components/ProductCard";
 import { ProductContext } from "../context/ProductContext";
+import Service from "../Services/Service";
+import { BiX } from "react-icons/bi";
+import ReactPaginate from "react-js-pagination";
 
 function Home() {
-	const [search, setSearch] = useState("");
-	const { liveSearch } = useContext(ProductContext);
+	const [input, setInput] = useState("");
+	const [keyword, setKeyword] = useState("");
+	const { dispatch, current_page, per_page, total } = useContext(ProductContext);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
-		liveSearch(search);
-	}
+		setKeyword(input);
+	};
 
-	search === '' && liveSearch('');
+	const clearInput = () => {
+		setKeyword("");
+		setInput("");
+	};
 
-	// const {dispatch} = useContext(ProductContext);
-	// dispatch({type: 'ADD_TO_CART', id});
+	const getData = (page = 1) => {
+		Service.getAllItem(page, keyword)
+			.then((res) => {
+				console.log(res.data);
+				dispatch({
+					type: "RETREIVE_SUCCESS",
+					payload: res.data,
+				});
+			})
+			.catch((err) => console.log(err));
+	};
+
+	useEffect(() => {
+		getData(1, keyword);
+	}, [keyword]);
+
 	return (
 		<div className="container">
 			<div className="flex_container main">
 				<div className="main_wrapper">
-					<span className="wrap_title">Shop on M-Shop</span>
+					<span className="wrap_title">Shop at M-Shop</span>
 					<div>
 						<button className="btn primary_btn">Shop More</button>
 					</div>
@@ -32,18 +53,41 @@ function Home() {
 			</div>
 
 			<div className="search_container">
-				<input
-					type="search"
-					className="search_input"
-					placeholder="Please search using phone model, eg: Iphone 13 pro"
-					onChange={(e) => setSearch(e.target.value)}
-				/>
-				<button className="btn primary_btn" onClick={handleSearch}>Search</button>
+				<div className="search">
+					<input
+						type="text"
+						className="search_input"
+						value={input}
+						placeholder="Please search using phone model, eg: Iphone 13 pro"
+						onChange={(e) => setInput(e.target.value)}
+					/>
+					<BiX
+						className={`cross_icon ${
+							input !== "" ? "show_icon" : ""
+						}`}
+						onClick={clearInput}
+					/>
+				</div>
+				<button className="btn primary_btn" onClick={handleSearch}>
+					Search
+				</button>
 			</div>
 
 			<div className="card_container">
 				<ProductCard />
 			</div>
+			<ReactPaginate
+				activePage={parseInt(current_page)}
+				totalItemsCount={total - 12}
+				ItemsCountPerPage={per_page}
+				pageRangeDisplayed={5}
+				onChange={(page) => getData(page)}
+				firstPageText="Previous"
+				lastPageText="Last"
+				activeClass="active"
+				itemClass="pagination_item"
+				className="pagination"
+			/>
 		</div>
 	);
 }

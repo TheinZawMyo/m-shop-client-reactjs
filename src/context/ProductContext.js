@@ -1,40 +1,31 @@
-import react, {createContext,useEffect, useState, useReducer} from "react";
+import react, { createContext, useReducer } from "react";
 import { ProductReducer } from "../reducers/ProductReducer";
-import Service from "../Services/Service";
 
 export const ProductContext = createContext();
 
+const initialState = {
+	per_page: null,
+	current_page: null,
+	total: 0,
+	products: [],
+};
+
 const ProductContextProvider = (props) => {
-    const [products, setProducts] = useState([]);
-    const [keyword, setKeyword] = useState("");
+	const [state, dispatch] = useReducer(ProductReducer, initialState);
 
-    useEffect(() => {
-        const getData = async() => {
-            keyword !== '' && console.log(keyword);
-            await Service.getAllItem(keyword)
-            .then((res) => {
-                console.log(res.data.products)
-                setProducts(res.data.products);
-            })
-            .catch((err) => console.log(err));
-        }
-
-        getData();
-        
-    }, [keyword]);
-
-    
-    const liveSearch = (key) => {
-        setKeyword(key);
-    }
-
-
-    return (
-        <ProductContext.Provider value={{products, liveSearch}} >
-            {props.children}
-        </ProductContext.Provider>
-    )
-
-}
+	return (
+		<ProductContext.Provider
+			value={{
+				products: state.products,
+				per_page: state.per_page,
+				current_page: state.current_page,
+				total: state.total,
+				dispatch,
+			}}
+		>
+			{props.children}
+		</ProductContext.Provider>
+	);
+};
 
 export default ProductContextProvider;
