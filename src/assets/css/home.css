@@ -28,7 +28,7 @@
 .card_container {
 	display: grid;
 	margin: 20px auto;
-	grid-template-columns: 33.3% 33.3% 33.3%;
+	grid-template-columns: 25% 25% 25% 25%;
 }
 
 .search_container {
@@ -45,7 +45,7 @@
 
 .search_input {
 	padding: 10px;
-	border-radius: 25px;
+	border-radius: 5px;
 	width: 100%;
 	border: 2px solid var(--primary-color);
 	font-size: 15px;
@@ -94,8 +94,16 @@
 	padding: 8px 16px;
 }
 
+.pagination_item:nth-child(3) {
+	padding: 8px 18px;
+}
+
 .active {
 	border: 1px solid var(--text-color);
 	border-radius: 50%;
 	background: var(--text-color);
+}
+
+.rate_container {
+	padding: 0px 10px;
 }

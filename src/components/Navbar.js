@@ -38,7 +38,7 @@ function Navbar() {
 								</li>
 							</Link>
 							<Link
-								to="/profile"
+								to="/user"
 								className="menu_link"
 								onClick={() => setClick(!click)}
 							>
@@ -46,6 +46,9 @@ function Navbar() {
 									Profile <BiUser className="icon" />
 								</li>
 							</Link>
+							{/* <Link to="">
+								<li className="nav_btn">Log Out</li>
+							</Link> */}
 						</ul>
 					</div>
 

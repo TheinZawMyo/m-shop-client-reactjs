@@ -8,6 +8,7 @@ const initialState = {
 	current_page: null,
 	total: 0,
 	products: [],
+	detail: {}
 };
 
 const ProductContextProvider = (props) => {

@@ -3,7 +3,7 @@ import mobile from "../assets/images/mobile.svg";
 import "../assets/css/home.css";
 import ProductCard from "../components/ProductCard";
 import { ProductContext } from "../context/ProductContext";
-import Service from "../Services/Service";
+import { GetItem } from "../actions/Action";
 import { BiX } from "react-icons/bi";
 import ReactPaginate from "react-js-pagination";
 
@@ -23,15 +23,11 @@ function Home() {
 	};
 
 	const getData = (page = 1) => {
-		Service.getAllItem(page, keyword)
-			.then((res) => {
-				console.log(res.data);
-				dispatch({
-					type: "RETREIVE_SUCCESS",
-					payload: res.data,
-				});
-			})
-			.catch((err) => console.log(err));
+		try {
+			GetItem(dispatch, keyword, page);
+		}catch(error){
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
@@ -58,7 +54,7 @@ function Home() {
 						type="text"
 						className="search_input"
 						value={input}
-						placeholder="Please search using phone model, eg: Iphone 13 pro"
+						placeholder="Please search by phone model, eg: Iphone 13 pro"
 						onChange={(e) => setInput(e.target.value)}
 					/>
 					<BiX
@@ -82,7 +78,7 @@ function Home() {
 				ItemsCountPerPage={per_page}
 				pageRangeDisplayed={5}
 				onChange={(page) => getData(page)}
-				firstPageText="Previous"
+				firstPageText="First"
 				lastPageText="Last"
 				activeClass="active"
 				itemClass="pagination_item"

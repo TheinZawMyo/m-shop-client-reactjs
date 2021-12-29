@@ -1,7 +1,8 @@
 export const ProductReducer = (state, action) => {
     switch(action.type){
         case 'RETREIVE_SUCCESS':
-            return { 
+            return {
+                ...state,
                 current_page: action.payload.current_page,
                 per_page: action.payload.per_page,
                 total: action.payload.total, 

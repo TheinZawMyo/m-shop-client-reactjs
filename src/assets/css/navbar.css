@@ -23,16 +23,12 @@ header {
     .menu_list {
         display: flex;
     }
-    .menu_item {
-        padding: 1.5rem 1rem;
-    }
-    
 }
 
 
 
 .menu_item {
-    border-bottom: 3px solid transparent;
+    padding: 1.5rem 1rem;
 	cursor: pointer;
 }
 

@@ -47,8 +47,8 @@ a {
 }
 
 .btn {
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 10px 30px;
+  border-radius: 5px;
   border: 2px solid var(--primary-color);
   font-size: 15px;
   color: var(--text-color);
@@ -56,6 +56,16 @@ a {
   margin: 10px;
   text-align: center;
   cursor: pointer;
+}
+
+.nav_btn {
+  border-radius: 5px;
+  border: 2px solid var(--primary-color);
+  padding: 8px 25px !important;
+  margin: 12px 10px;
+  background-color: var(--text-color);
+  color: var(--primary-color);
+  /* box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1); */
 }
 
 
@@ -70,7 +80,7 @@ a {
   color: var(--text-color);
 }
 
-.secondary_btn {
+.secondary_btn, .nav_btn:hover {
   padding: 6px 20px;
   background-color: var(--background-color);
   color: var(--primary-color);
@@ -80,4 +90,18 @@ a {
 .secondary_btn:hover {
   background-color: var(--primary-color);
   color: var(--text-color);
+}
+
+.social_btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: var(--background-color);
+  box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }

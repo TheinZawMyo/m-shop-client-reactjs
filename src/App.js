@@ -7,10 +7,11 @@ import Cart from "./screens/Cart";
 import Profile from "./screens/Profile";
 import Detail from "./screens/Detail";
 import ProductContextProvider from "./context/ProductContext";
+import AuthContextProvider from "./context/AuthContext";
 
 function App() {
 	return (
-		<div>
+		<AuthContextProvider>
 			<Router>
 				<Navbar />
 				<ProductContextProvider>
@@ -21,7 +22,7 @@ function App() {
 						<Route exact path="/cart">
 							<Cart />
 						</Route>
-						<Route exact path="/profile">
+						<Route exact path="/user">
 							<Profile />
 						</Route>
 						<Route exact path="/detail/:id">
@@ -30,7 +31,7 @@ function App() {
 					</Switch>
 				</ProductContextProvider>
 			</Router>
-		</div>
+		</AuthContextProvider>
 	);
 }
 
