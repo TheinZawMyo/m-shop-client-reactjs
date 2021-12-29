@@ -29,6 +29,15 @@ export const AuthReducer = (state, action) => {
                 isAuth:false,
 				errorMessage: action.payload.error,
 			};
+
+		case "LOGOUT":
+			return {
+				...state, 
+				isAuth: false,
+				user: "",
+				token: "",
+				errorMessage: ""
+			}
 		default:
 			break;
 	}

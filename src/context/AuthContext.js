@@ -14,7 +14,7 @@ export const initialState = {
 	isAuth: false,
 	user: "" || user,
 	token: "" || token,
-	errorMessage: null,
+	errorMessage: "",
 };
 const AuthContextProvider = (props) => {
 	const [auth, authDispatch] = useReducer(AuthReducer, initialState);
@@ -31,6 +31,5 @@ const AuthContextProvider = (props) => {
 		</AuthContext.Provider>
 	);
 };
-
 
 export default AuthContextProvider;

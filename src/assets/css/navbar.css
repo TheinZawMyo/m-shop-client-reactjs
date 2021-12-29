@@ -1,92 +1,90 @@
 header {
-    width: 100%;
-    top: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    background-color: var(--background-color);
-    z-index: 10;
-    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
-    /* border-bottom: 1px dashed var(--text-color); */
+	width: 100%;
+	top: 0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	background-color: var(--background-color);
+	z-index: 10;
+	box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+	/* border-bottom: 1px dashed var(--text-color); */
 }
 
 .nav_bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1300px;
-    padding: 0px 10px ;
-    margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1300px;
+	padding: 0px 10px;
+	margin: 0 auto;
 }
 
-@media  screen and (min-width:787px) {
-    .menu_list {
-        display: flex;
-    }
+@media screen and (min-width: 787px) {
+	.menu_list {
+		display: flex;
+	}
 }
-
-
 
 .menu_item {
-    padding: 1.5rem 1rem;
+	padding: 0.8rem;
+	margin: 8px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	cursor: pointer;
 }
 
 .menu_item:hover {
-    border-bottom: 3px double var(--text-color);
-    
+	color: var(--primary-color);
 }
 
 .nav_bar a {
-    color: var(--text-color);
+	color: var(--text-color);
 }
 
 .logo_link {
-    font-size: 2rem;
-    font-weight: bold;
+	font-size: 2rem;
+	font-weight: bold;
 }
 
-
 .toggle_btn {
-    display: none;
+	display: none;
 }
 
 .show_menu {
-    top: 55px !important;
+	top: 55px !important;
 }
 
-@media screen and (max-width: 787px){
-    .nav_menu {
-        position: fixed;
+@media screen and (max-width: 787px) {
+	.nav_menu {
+		position: fixed;
 		left: 0;
 		width: 100%;
 		top: -100%;
-        padding: 20px 0px;
+		padding: 20px 0px;
 		text-align: center;
 		overflow-x: hidden;
-        background-color: var(--background-color);
+		background-color: var(--background-color);
 		transition: 0.7s;
 		box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 		border-radius: 0 0 1rem 1rem;
 		z-index: 100;
+	}
 
-    }
+	.logo_link {
+		font-size: 25px;
+	}
 
-    .logo_link {
-        font-size: 25px;
-    }
+	.nav_bar {
+		padding: 10px;
+	}
 
-    .nav_bar {
-        padding: 10px;
-    }
+	.menu_item {
+		margin: 5px 15px;
+		padding: 10px;
+	}
 
-    .menu_item {
-        margin: 5px 15px;
-        padding: 10px;
-
-    }
-
-    .toggle_btn {
-        display: block;
-    }
+	.toggle_btn {
+		display: block;
+	}
 }

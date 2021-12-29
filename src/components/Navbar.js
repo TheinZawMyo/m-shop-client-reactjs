@@ -1,11 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "../assets/css/navbar.css";
 import { BiMenu, BiCartAlt, BiUser } from "react-icons/bi";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
 	const [click, setClick] = useState(false);
-
+	const { authDispatch, user } = useContext(AuthContext);
+	let history = useHistory();
+	
+	const logout = () => {
+		authDispatch({ type: "LOGOUT" });
+		localStorage.removeItem("m-shop-user");
+		history.push("/user");
+	};
 	return (
 		<div>
 			<header>
@@ -46,9 +54,11 @@ function Navbar() {
 									Profile <BiUser className="icon" />
 								</li>
 							</Link>
-							{/* <Link to="">
-								<li className="nav_btn">Log Out</li>
-							</Link> */}
+							{user && (
+								<li className="nav_btn" onClick={logout}>
+									Log Out
+								</li>
+							)}
 						</ul>
 					</div>
 
