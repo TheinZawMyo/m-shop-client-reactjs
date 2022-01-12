@@ -1,6 +1,6 @@
 export const ProductReducer = (state, action) => {
     switch(action.type){
-        case 'RETREIVE_SUCCESS':
+        case 'RETRIEVE_SUCCESS':
             return {
                 ...state,
                 current_page: action.payload.current_page,

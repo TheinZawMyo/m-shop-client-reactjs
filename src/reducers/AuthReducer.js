@@ -37,7 +37,7 @@ export const AuthReducer = (state, action) => {
 				user: "",
 				token: "",
 				errorMessage: ""
-			}
+			};
 		default:
 			break;
 	}

@@ -88,3 +88,10 @@ header {
 		display: block;
 	}
 }
+
+.cart_count {
+	padding: 2px 10px;
+	background: var(--primary-color);
+	color: #fff;
+	border-radius: 30px;
+}

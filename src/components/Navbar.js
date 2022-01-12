@@ -3,12 +3,14 @@ import { Link, useHistory } from "react-router-dom";
 import "../assets/css/navbar.css";
 import { BiMenu, BiCartAlt, BiUser } from "react-icons/bi";
 import { AuthContext } from "../context/AuthContext";
+import { AddToCartContext } from "../context/AddToCartContext";
 
 function Navbar() {
 	const [click, setClick] = useState(false);
 	const { authDispatch, user } = useContext(AuthContext);
+	const { cart } = useContext(AddToCartContext);
 	let history = useHistory();
-	
+
 	const logout = () => {
 		authDispatch({ type: "LOGOUT" });
 		localStorage.removeItem("m-shop-user");
@@ -43,6 +45,9 @@ function Navbar() {
 							>
 								<li className="menu_item">
 									Cart <BiCartAlt className="icon" />
+									{cart.length !== 0 && <span className="cart_count">
+										{cart.length}
+									</span>}
 								</li>
 							</Link>
 							<Link

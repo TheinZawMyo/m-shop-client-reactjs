@@ -43,6 +43,10 @@
 	width: 60%;
 }
 
+.search_container .btn {
+	margin-left: 5px;
+}
+
 .search_input {
 	padding: 10px;
 	border-radius: 5px;
