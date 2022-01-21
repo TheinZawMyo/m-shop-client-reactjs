@@ -91,7 +91,7 @@ header {
 
 .cart_count {
 	padding: 2px 10px;
-	background: var(--primary-color);
-	color: #fff;
+	background: var(--text-color);
+	color: var(--primary-color);
 	border-radius: 30px;
 }

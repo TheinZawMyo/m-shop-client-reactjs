@@ -4,7 +4,7 @@ import {AddToCartContext} from '../context/AddToCartContext';
 
 const CartItem = (props) => {
 	// console.log(props);
-	const { cart_id, name, image, price, order, brand } = props.data;
+	const { cart_id, name, image, price, order, brand, subtotal } = props.data;
 	const {cartDispatch} = useContext(AddToCartContext);
 
 	return (
@@ -18,7 +18,8 @@ const CartItem = (props) => {
 					{brand} | {name}
 				</div>
 				<div>Price: {price} MMK</div>
-				<div>Item: {order} </div>
+				<div>Quantity: {order} </div>
+				<div>Total: {subtotal} MMK</div>
 				<div>
 					<span className="icon_container">
 						<RiDeleteBin6Line  className="delete_icon" onClick={() => cartDispatch({type: "REMOVE_CART", id: cart_id})}/>

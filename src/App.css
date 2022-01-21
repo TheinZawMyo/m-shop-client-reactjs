@@ -63,7 +63,7 @@ a {
 .nav_btn {
 	border-radius: 5px;
 	border: 2px solid var(--primary-color);
-	padding: 0px 25px !important;
+	padding: 0px 10px !important;
 	display: flex;
 	justify-content: center;
 	align-items: center;

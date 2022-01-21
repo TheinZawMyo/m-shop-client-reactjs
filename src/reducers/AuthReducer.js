@@ -3,7 +3,6 @@ export const AuthReducer = (state, action) => {
 		case "REGISTER_SUCCESS":
 			return {
 				...state,
-				isAuth: true,
 				user: action.payload.user,
 				token: action.payload.token,
 			};
@@ -11,14 +10,12 @@ export const AuthReducer = (state, action) => {
 		case "REGISTER_ERROR":
 			return {
 				...state,
-                isAuth:false,
 				errorMessage: action.payload.error,
 			};
 
 		case "LOGIN_SUCCESS":
 			return {
 				...state,
-				isAuth: true,
 				user: action.payload.user,
 				token: action.payload.token,
 			};
@@ -26,14 +23,13 @@ export const AuthReducer = (state, action) => {
 		case "LOGIN_ERROR":
 			return {
 				...state,
-                isAuth:false,
 				errorMessage: action.payload.error,
 			};
 
 		case "LOGOUT":
 			return {
 				...state, 
-				isAuth: false,
+				isCompleted:false,
 				user: "",
 				token: "",
 				errorMessage: ""

@@ -27,21 +27,25 @@ const Detail = () => {
 
 	const addCart = () => {
 		if (count !== 0) {
-			cartDispatch({ type: "ADDTOCART", payload: { product, count, subtotal } });
+			cartDispatch({
+				type: "ADDTOCART",
+				payload: { product, count, subtotal },
+			});
+			alert.show("The product has been placed successfully to the cart.");
 			// console.log(product);
 		} else {
-			alert.show("Please choose your order count.");
+			alert.show("Please choose your order quantity.");
 		}
 	};
 
 	useEffect(() => {
 		const calSubtotal = () => {
 			let val = count * product.price;
-			console.log(count)
+			// console.log(count);
 			setSubtotal(val);
 		};
 		calSubtotal();
-	})
+	});
 
 	return (
 		<div className="container">
@@ -54,6 +58,7 @@ const Detail = () => {
 					<div className="detail">
 						<div>Brand Name: {product.brand}</div>
 						<div>Model Name: {product.p_name}</div>
+						<div>Price: {product.price} MMK</div>
 						<div>Available Color: Red, Silver</div>
 						<div>
 							<span className="stock_flg">
@@ -61,7 +66,7 @@ const Detail = () => {
 							</span>
 						</div>
 						<div className="counter">
-							Quantity :
+							Quantity : <br />
 							<span
 								className="minus"
 								onClick={() =>
@@ -81,11 +86,16 @@ const Detail = () => {
 							/>
 							<span
 								className="plus"
-								onClick={() => count <= product.qty && setCount(count + 1)}
+								onClick={() =>
+									count <= product.qty && setCount(count + 1)
+								}
 							>
 								+
 							</span>
-							<div className="left_item"> Only {product.qty} item(s) in stock</div>
+						</div>
+						<div className="left_item">
+							{" "}
+							Only {product.qty} item(s) in stock
 						</div>
 						<div className="detail_btn">
 							<button

@@ -28,9 +28,12 @@ const Profile = () => {
 
 	const Form = loginForm === false ? <Register /> : <Login />;
 
+	const updateProfile = () => {};
+
 	return (
 		<div className="container form_container">
 			{!user && <div className="notice">{link}</div>}
+			<br />
 			{!user ? (
 				Form
 			) : (
@@ -38,6 +41,46 @@ const Profile = () => {
 					<h3 className="title">Hello {user?.name} </h3>
 					<div className="card_description">
 						Your order list is blah blah.
+					</div>
+					<div className="update_form">
+						<h4 className="title">Update User Information</h4>
+						<form onSubmit={updateProfile}>
+							<div className="form_field">
+								<label>Your Phone Number *</label>
+								<input
+									type="text"
+									className="form_control"
+									name="phone"
+									placeholder="Enter your phone number"
+									maxLength={12}
+								/>
+								{/* {errors?.name && (
+							<div>
+								<span className="error_txt">
+									{errors?.name}
+								</span>
+							</div>
+						)} */}
+							</div>
+							<div className="form_field">
+								<label>Your Address *</label>
+								<input
+									type="text"
+									className="form_control"
+									name="address"
+									placeholder="Enter your address"
+									maxLength={50}
+								/>
+								{/* {errors?.name && (
+							<div>
+								<span className="error_txt">
+									{errors?.name}
+								</span>
+							</div>
+						)} */}
+							</div>
+							<button className="btn primary_btn">Save</button>
+						</form>
 					</div>
 				</div>
 			)}

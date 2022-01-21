@@ -6,12 +6,22 @@
 
 .card_image {
 	height: 250px;
+	overflow: hidden;
 }
 
 .card_img {
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.card_image:hover .card_img {
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
 }
 
 .card_title,
@@ -143,12 +153,13 @@
 }
 
 .cart_wrapper div {
-	margin: 25px;
+	margin: 20px;
 }
 
 .cart_wrapper .cart_img {
 	width: 100%;
 	height:100%;
+	object-fit: contain;
 }
 
 .delete_icon {
@@ -181,9 +192,29 @@
 	width: 100%;
 }
 
+.update_form {
+	width: 60%;
+	margin: 20px auto;
+	border-radius: 10px;
+	padding: 50px 20px;
+	background: rgb(231, 230, 230);
+}
+
+.update_form .btn {
+	width: 100%;
+}
+
 @media screen and (max-width:787px){
 	.cart_container {
 		grid-template-columns: 100%;
+	}
+
+	.update_form {
+		width: 100%;
+	}
+
+	.cart_wrapper {
+		height: 350px;
 	}
 }
 

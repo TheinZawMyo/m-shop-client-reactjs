@@ -1,3 +1,13 @@
+.login_container,
+.register_container {
+	display: grid;
+	grid-template-columns: 65% 35%;
+}
+
+.login_container > *,
+.register_container > * {
+	width: 100%;
+}
 .form_field {
 	margin: 20px auto;
 }
@@ -6,15 +16,15 @@
 	display: block;
 }
 
-.register, .login {
+.register,
+.login {
 	padding: 20px;
-	width: 40%;
+	width: 100%;
 	margin: 50px auto;
 }
 
 .notice {
-    width: 40%;
-    margin: 0 auto;
+	margin: 0 auto;
 }
 
 .form_control {
@@ -22,44 +32,57 @@
 	border-radius: 5px;
 	border: 2px solid var(--text-color);
 	font-size: 15px;
-    width: 100%;
+	width: 100%;
 }
 
 .form_field button {
-    margin: 0 auto;
-    width: 100%;
+	margin: 0 auto;
+	width: 100%;
 }
 
 .note_link {
-    float: right;
+	float: right;
 }
 
 .social_acc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .social_acc .facebook {
-    background: #3b5998;
+	background: #3b5998;
 }
 
 .social_acc .google {
-    background: #d54f3a;
+	background: #d54f3a;
 }
 
 .link {
-    color: var(--primary-color);
-    cursor: pointer;
+	color: var(--primary-color);
+	cursor: pointer;
 }
 
-@media screen and (max-width: 787px){
-    .register, .login, .notice {
-        width: 90%;
-    }
+@media screen and (max-width: 787px) {
+	.register,
+	.login,
+	.notice {
+		width: 100%;
+	}
+	.login_container,
+	.register_container {
+		grid-template-columns: auto;
+	}
 }
 
 .error_txt {
-    color: #ff0000;
-    font-size: 14px;
+	color: #ff0000;
+	font-size: 14px;
+}
+
+.login_img img,
+.register_img img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }

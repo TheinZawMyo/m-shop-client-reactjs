@@ -4,6 +4,7 @@ import { FaFacebookSquare, FaGooglePlusSquare } from "react-icons/fa";
 import { omit } from "lodash";
 import { RegisterUser } from "../actions/Action";
 import { AuthContext } from "../context/AuthContext";
+import welcome from "../assets/images/welcome.svg";
 
 const Register = () => {
 	const [values, setValues] = useState({});
@@ -92,72 +93,86 @@ const Register = () => {
 	};
 
 	return (
-		<div className="card register">
-			<h3 className="">Create your m-shop account</h3>
-			{errors?.message && (
-				<span className="error_txt">{errors?.message}</span>
-			)}
-			<form onSubmit={handleSubmit}>
-				<div className="form_field">
-					<label>Name *</label>
-					<input
-						type="text"
-						className="form_control"
-						name="name"
-						placeholder="Enter your name"
-						onChange={handleChange}
-					/>
-					{errors?.name && (
-						<div>
-							<span className="error_txt">{errors?.name}</span>
-						</div>
+		<div className="register_container">
+			<div className="register_img col">
+				<img src={welcome} alt="register" />
+			</div>
+			<div className="card register">
+				<h3 className="">Create your m-shop account</h3>
+				{errors?.message && (
+					<span className="error_txt">{errors?.message}</span>
+				)}
+				<form onSubmit={handleSubmit}>
+					<div className="form_field">
+						<label>Name *</label>
+						<input
+							type="text"
+							className="form_control"
+							name="name"
+							placeholder="Enter your name"
+							onChange={handleChange}
+						/>
+						{errors?.name && (
+							<div>
+								<span className="error_txt">
+									{errors?.name}
+								</span>
+							</div>
+						)}
+					</div>
+					<div className="form_field">
+						<label>Email *</label>
+						<input
+							type="email"
+							name="email"
+							className="form_control"
+							placeholder="Enter your email"
+							onChange={handleChange}
+						/>
+						{errors?.email && (
+							<div>
+								<span className="error_txt">
+									{errors?.email}
+								</span>
+							</div>
+						)}
+					</div>
+					<div className="form_field">
+						<label>Password *</label>
+						<input
+							type="password"
+							name="password"
+							className="form_control"
+							placeholder="Enter your password"
+							onChange={handleChange}
+						/>
+						{errors?.password && (
+							<div>
+								<span className="error_txt">
+									{errors?.password}
+								</span>
+							</div>
+						)}
+					</div>
+					{message?.email && (
+						<span className="error_txt">{message?.email}</span>
 					)}
-				</div>
-				<div className="form_field">
-					<label>Email *</label>
-					<input
-						type="email"
-						name="email"
-						className="form_control"
-						placeholder="Enter your email"
-						onChange={handleChange}
-					/>
-					{errors?.email && (
-						<div>
-							<span className="error_txt">{errors?.email}</span>
-						</div>
-					)}
-					
-				</div>
-				<div className="form_field">
-					<label>Password *</label>
-					<input
-						type="password"
-						name="password"
-						className="form_control"
-						placeholder="Enter your password"
-						onChange={handleChange}
-					/>
-					{errors?.password && (
-						<div>
-							<span className="error_txt">{errors?.password}</span>
-						</div>
-					)}
-				</div>
-				{message?.email && <span className="error_txt">{message?.email}</span>}
-				<div className="form_field">
-					<button className="btn primary_btn">Sign up</button>
-				</div>
-				<span>Or sign in with</span>
-				<div className="social_acc">
-					<span className="social_btn facebook">
-						<FaFacebookSquare className="social_icon" /> FaceBook
-					</span>
-					<span className="social_btn google">
-						<FaGooglePlusSquare className="social_icon" /> Google
-					</span>
-				</div>
-			</form>
+					<div className="form_field">
+						<button className="btn primary_btn">Sign up</button>
+					</div>
+					<span>Or sign in with</span>
+					<div className="social_acc">
+						<span className="social_btn facebook">
+							<FaFacebookSquare className="social_icon" />{" "}
+							FaceBook
+						</span>
+						<span className="social_btn google">
+							<FaGooglePlusSquare className="social_icon" />{" "}
+							Google
+						</span>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };

@@ -4,6 +4,9 @@ import { AddToCartContext } from "../context/AddToCartContext";
 
 function Cart() {
 	const { cart } = useContext(AddToCartContext);
+
+	const total_price = cart.reduce((total, value) => total + value.subtotal, 0);
+
 	return cart.length !== 0 ? (
 		<div className="container cart_container">
 			<div className="cart">
@@ -13,9 +16,9 @@ function Cart() {
 			</div>
 			<div>
 				<div className="checkout card">
-					<div>Total : 10000 MMK</div>
+					<div>Total : {total_price} MMK</div>
 					<div>Discount : 0 MMK</div>
-					<button className="btn primary_btn">checkout</button>
+					<button className="btn primary_btn">Check Out</button>
 				</div>
 			</div>
 		</div>

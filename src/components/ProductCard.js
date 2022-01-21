@@ -9,7 +9,7 @@ const ProductCard = (props) => {
 	return products.length !== 0 ? (
 		products.map((product) => {
 			return (
-				<div className="card" key={product.id}>
+				<div className="card list_card" key={product.id}>
 					<Link to={`detail/${product.id}`}>
 						<div className="card_image">
 							<img

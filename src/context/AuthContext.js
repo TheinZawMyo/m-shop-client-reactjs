@@ -11,7 +11,7 @@ let token = localStorage.getItem("m-shop-user")
 	: "";
 
 export const initialState = {
-	isAuth: false,
+	isCompleted:false,
 	user: "" || user,
 	token: "" || token,
 	errorMessage: "",
