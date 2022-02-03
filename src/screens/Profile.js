@@ -1,11 +1,36 @@
-import react, { useContext, useState } from "react";
+import react, { useContext, useState, useEffect } from "react";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import { AuthContext } from "../context/AuthContext";
+import { updateProfile, userDetail } from "../actions/Action";
+import { useAlert } from "react-alert";
 
 const Profile = () => {
-	const { user } = useContext(AuthContext);
+	const { user, authDispatch } = useContext(AuthContext);
 	const [loginForm, setLoginForm] = useState(false);
+	const [inputPhone, setInputPhone] = useState("");
+	const [inputAddress, setInputAddress] = useState("");
+	const alert = useAlert();
+
+	//on change data from input
+	// const handleChange = (e) => {
+	// 	e.preventDefault();
+	// 	let name = e.target.name;
+	// 	let val = e.target.value;
+	// 	setUserInfo({
+	// 		...userInfo,
+	// 		[name]: val,
+	// 	});
+	// 	// console.log(userInfo);
+	// };
+
+	useEffect(() => {
+		user && userDetail(authDispatch, user?.id);
+		user && setInputPhone(user.phone);
+		user && setInputAddress(user.address);
+	}, [user.id])
+
+	// console.log(user.address);
 
 	const link =
 		loginForm === false ? (
@@ -28,7 +53,17 @@ const Profile = () => {
 
 	const Form = loginForm === false ? <Register /> : <Login />;
 
-	const updateProfile = () => {};
+	const userInfo = {
+		phone: inputPhone,
+		address: inputAddress
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		userInfo && updateProfile(authDispatch, userInfo, user.id);
+		alert.show("Your information have been changed.");
+	};
+
 
 	return (
 		<div className="container form_container">
@@ -44,15 +79,19 @@ const Profile = () => {
 					</div>
 					<div className="update_form">
 						<h4 className="title">Update User Information</h4>
-						<form onSubmit={updateProfile}>
+						<form onSubmit={handleSubmit}>
 							<div className="form_field">
-								<label>Your Phone Number *</label>
+								<label>Phone Number *</label>
 								<input
 									type="text"
 									className="form_control"
 									name="phone"
 									placeholder="Enter your phone number"
 									maxLength={12}
+									minLength={9}
+									value={inputPhone || ""}
+									onChange={(e) => setInputPhone(e.target.value)}
+									required
 								/>
 								{/* {errors?.name && (
 							<div>
@@ -63,13 +102,17 @@ const Profile = () => {
 						)} */}
 							</div>
 							<div className="form_field">
-								<label>Your Address *</label>
+								<label>Address *</label>
 								<input
 									type="text"
 									className="form_control"
 									name="address"
 									placeholder="Enter your address"
 									maxLength={50}
+									minLength={10}
+									value={inputAddress || ""}
+									onChange={(e) => setInputAddress(e.target.value)}
+									required
 								/>
 								{/* {errors?.name && (
 							<div>
@@ -79,7 +122,9 @@ const Profile = () => {
 							</div>
 						)} */}
 							</div>
-							<button className="btn primary_btn">Save</button>
+							<button type="submit" className="btn primary_btn">
+								Save
+							</button>
 						</form>
 					</div>
 				</div>

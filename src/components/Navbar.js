@@ -14,6 +14,8 @@ function Navbar() {
 	const logout = () => {
 		authDispatch({ type: "LOGOUT" });
 		localStorage.removeItem("m-shop-user");
+		localStorage.removeItem("m-shop-token");
+		localStorage.removeItem("info-completed");
 		history.push("/user");
 	};
 	return (

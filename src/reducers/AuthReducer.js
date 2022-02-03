@@ -18,6 +18,7 @@ export const AuthReducer = (state, action) => {
 				...state,
 				user: action.payload.user,
 				token: action.payload.token,
+			
 			};
 
 		case "LOGIN_ERROR":
@@ -26,10 +27,21 @@ export const AuthReducer = (state, action) => {
 				errorMessage: action.payload.error,
 			};
 
+		case "UPDATE_SUCCESS":
+			return {
+				...state,
+				user: action.payload.user,
+			}
+
+		case "USER_DETAIL":
+			return {
+				...state,
+				user: action.payload.user_detail,
+			}
+
 		case "LOGOUT":
 			return {
 				...state, 
-				isCompleted:false,
 				user: "",
 				token: "",
 				errorMessage: ""

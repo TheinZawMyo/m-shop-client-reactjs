@@ -23,6 +23,24 @@ class Service {
 			password,
 		});
 	}
+
+	updateProfile(phone, address, id) {
+		return http.post("/update/profile", {
+			phone,
+			address,
+			id,
+		});
+	}
+
+	userDetail(id) {
+		return http.get(`/user/detail?id=${id}`);
+	}
+
+	placeOrder(orders) {
+		return http.post("/order", {
+			orders,
+		});
+	}
 }
 
 export default new Service();

@@ -15,11 +15,12 @@ export const RegisterUser = (authDispatch, values) => {
 	Service.register(name, email, password)
 		.then((res) => {
 			let data = res.data;
-			console.log(data);
+			// console.log(data);
 			if (data.status === 0) {
 				authDispatch({ type: "REGISTER_ERROR", payload: data });
 			} else {
-				localStorage.setItem("m-shop-user", JSON.stringify(data));
+				localStorage.setItem("m-shop-token", JSON.stringify(data.token));
+				localStorage.setItem("m-shop-user", JSON.stringify(data.user));
 				authDispatch({ type: "REGISTER_SUCCESS", payload: data });
 			}
 		})
@@ -35,9 +36,37 @@ export const LoginUser = (authDispatch, values) => {
 			if (data.status === 0) {
 				authDispatch({ type: "LOGIN_ERROR", payload: data });
 			} else {
-				localStorage.setItem("m-shop-user", JSON.stringify(data));
+				if(data.user.phone !== null && data.user.address !== null){
+					localStorage.setItem('info-completed', 'true');
+				}else {
+					localStorage.setItem('info-completed', 'false');
+				}
+				localStorage.setItem("m-shop-token", JSON.stringify(data.token));
+				localStorage.setItem("m-shop-user", JSON.stringify(data.user));
 				authDispatch({ type: "LOGIN_SUCCESS", payload: data });
 			}
 		})
 		.catch((err) => console.log(err));
 };
+
+export const updateProfile = (authDispatch, info, id) => {
+	const {phone, address} = info;
+	Service.updateProfile(phone, address, id)
+		.then((res) => {
+			// console.log(res);
+			let data = res.data;
+			localStorage.setItem("m-shop-user", JSON.stringify(data.user));
+			localStorage.setItem('info-completed', 'true');
+			authDispatch({ type: "UPDATE_SUCCESS", payload: data });
+		})
+		.catch((err) => console.log(err));
+};
+
+export const userDetail = (authDispatch, id) => {
+	Service.userDetail(id)
+		.then((res) => {
+			// console.log(res);
+			authDispatch({ type: "USER_DETAIL", payload: res.data });
+		})
+		.catch(err => console.log(err));
+}

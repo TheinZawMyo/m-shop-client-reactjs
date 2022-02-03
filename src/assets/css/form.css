@@ -29,10 +29,17 @@
 
 .form_control {
 	padding: 10px 20px;
-	border-radius: 5px;
-	border: 2px solid var(--text-color);
+	background: transparent;
+	/* border-radius: 5px; */
+	border: none;
+	border-bottom: 2px solid var(--text-color);
 	font-size: 15px;
 	width: 100%;
+}
+
+.form_control:focus {
+	outline: none;
+	border-color: var(--primary-color);
 }
 
 .form_field button {

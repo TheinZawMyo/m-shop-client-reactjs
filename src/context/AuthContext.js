@@ -4,14 +4,13 @@ import { AuthReducer } from "../reducers/AuthReducer";
 export const AuthContext = createContext();
 
 let user = localStorage.getItem("m-shop-user")
-	? JSON.parse(localStorage.getItem("m-shop-user")).user
+	? JSON.parse(localStorage.getItem("m-shop-user"))
 	: "";
 let token = localStorage.getItem("m-shop-user")
-	? JSON.parse(localStorage.getItem("m-shop-user")).token
+	? JSON.parse(localStorage.getItem("m-shop-token"))
 	: "";
 
 export const initialState = {
-	isCompleted:false,
 	user: "" || user,
 	token: "" || token,
 	errorMessage: "",
