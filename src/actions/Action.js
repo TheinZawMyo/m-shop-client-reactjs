@@ -27,6 +27,16 @@ export const RegisterUser = (authDispatch, values) => {
 		.catch((err) => console.log(err));
 };
 
+// export const googleLogin = (authDispatch) => {
+// 	Service.loginWithGoogle()
+// 			.then((res) => {
+// 				localStorage.setItem("m-shop-token", JSON.stringify(res.data.token));
+// 				localStorage.setItem("m-shop-user", JSON.stringify(res.data.user));
+// 				authDispatch({ type: "REGISTER_SUCCESS", payload: res.data });
+// 			})
+// 			.catch(err => console.log(err));
+// }
+
 export const LoginUser = (authDispatch, values) => {
 	const { email, password } = values;
 	Service.login(email, password)

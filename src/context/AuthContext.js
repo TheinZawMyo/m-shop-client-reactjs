@@ -14,6 +14,7 @@ export const initialState = {
 	user: "" || user,
 	token: "" || token,
 	errorMessage: "",
+	orderList: [],
 };
 const AuthContextProvider = (props) => {
 	const [auth, authDispatch] = useReducer(AuthReducer, initialState);
@@ -23,6 +24,7 @@ const AuthContextProvider = (props) => {
 				user: auth.user,
 				token: auth.token,
 				message: auth.errorMessage,
+				orderList: auth.orderList,
 				authDispatch,
 			}}
 		>

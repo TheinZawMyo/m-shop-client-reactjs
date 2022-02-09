@@ -24,6 +24,15 @@ class Service {
 		});
 	}
 
+	// google login url
+	googleUrl(){
+		return http.get('/auth/google/url');
+	}
+
+	loginWithGoogle(){
+		return http.get('/auth/google/callback');
+	}
+
 	updateProfile(phone, address, id) {
 		return http.post("/update/profile", {
 			phone,
@@ -41,6 +50,8 @@ class Service {
 			orders,
 		});
 	}
+
+
 }
 
 export default new Service();

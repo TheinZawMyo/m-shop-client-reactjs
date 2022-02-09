@@ -37,6 +37,7 @@ export const AuthReducer = (state, action) => {
 			return {
 				...state,
 				user: action.payload.user_detail,
+				orderList: action.payload.order_detail
 			}
 
 		case "LOGOUT":

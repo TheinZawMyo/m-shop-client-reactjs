@@ -160,8 +160,8 @@ const Register = () => {
 					<div className="form_field">
 						<button className="btn primary_btn">Sign up</button>
 					</div>
-					<span>Or sign in with</span>
-					<div className="social_acc">
+					{/* <span>Or sign in with</span> */}
+					{/* <div className="social_acc">
 						<span className="social_btn facebook">
 							<FaFacebookSquare className="social_icon" />{" "}
 							FaceBook
@@ -170,7 +170,7 @@ const Register = () => {
 							<FaGooglePlusSquare className="social_icon" />{" "}
 							Google
 						</span>
-					</div>
+					</div> */}
 				</form>
 			</div>
 		</div>

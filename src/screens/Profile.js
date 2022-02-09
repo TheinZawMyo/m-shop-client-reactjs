@@ -2,33 +2,23 @@ import react, { useContext, useState, useEffect } from "react";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import { AuthContext } from "../context/AuthContext";
-import { updateProfile, userDetail } from "../actions/Action";
+import { googleLogin, updateProfile, userDetail } from "../actions/Action";
 import { useAlert } from "react-alert";
 
 const Profile = () => {
-	const { user, authDispatch } = useContext(AuthContext);
+	const { user, orderList, authDispatch } = useContext(AuthContext);
 	const [loginForm, setLoginForm] = useState(false);
 	const [inputPhone, setInputPhone] = useState("");
 	const [inputAddress, setInputAddress] = useState("");
 	const alert = useAlert();
 
-	//on change data from input
-	// const handleChange = (e) => {
-	// 	e.preventDefault();
-	// 	let name = e.target.name;
-	// 	let val = e.target.value;
-	// 	setUserInfo({
-	// 		...userInfo,
-	// 		[name]: val,
-	// 	});
-	// 	// console.log(userInfo);
-	// };
+	// console.log(orderList);
 
 	useEffect(() => {
 		user && userDetail(authDispatch, user?.id);
 		user && setInputPhone(user.phone);
 		user && setInputAddress(user.address);
-	}, [user.id])
+	}, [user.id]);
 
 	// console.log(user.address);
 
@@ -55,7 +45,7 @@ const Profile = () => {
 
 	const userInfo = {
 		phone: inputPhone,
-		address: inputAddress
+		address: inputAddress,
 	};
 
 	const handleSubmit = (e) => {
@@ -64,6 +54,9 @@ const Profile = () => {
 		alert.show("Your information have been changed.");
 	};
 
+	// useEffect(() => {
+	// 	googleLogin(authDispatch);
+	// }, []);
 
 	return (
 		<div className="container form_container">
@@ -74,8 +67,57 @@ const Profile = () => {
 			) : (
 				<div className="card profile_card">
 					<h3 className="title">Hello {user?.name} </h3>
-					<div className="card_description">
-						Your order list is blah blah.
+					<div className="card_description order_table">
+						{orderList.length !== 0}
+						<table className="table">
+							<thead>
+								<tr className="tb_row">
+									<th className="tb_col">Order ID</th>
+									<th className="tb_col">Product Name</th>
+									<th className="tb_col">Qty</th>
+									<th className="tb_col">Price</th>
+									<th className="tb_col">Order Date</th>
+									<th className="tb_col">Order Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								{orderList.map((order) => {
+									return (
+										<tr
+											key={order.order_id}
+											className="tb_row"
+										>
+											<td className="tb_col">
+												{order.order_id}
+											</td>
+											<td className="tb_col">
+												{order.product_name}
+											</td>
+											<td className="tb_col">
+												{order.qty}
+											</td>
+											<td className="tb_col">
+												{order.price}
+											</td>
+											<td className="tb_col">
+												{order.ordered_date}
+											</td>
+											<td className="tb_col">
+												{order.order_status === 1 ? (
+													<span className="txt_warning">
+														Pending
+													</span>
+												) : (
+													<span className="txt_success">
+														Deliver
+													</span>
+												)}
+											</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
 					</div>
 					<div className="update_form">
 						<h4 className="title">Update User Information</h4>
@@ -90,7 +132,9 @@ const Profile = () => {
 									maxLength={12}
 									minLength={9}
 									value={inputPhone || ""}
-									onChange={(e) => setInputPhone(e.target.value)}
+									onChange={(e) =>
+										setInputPhone(e.target.value)
+									}
 									required
 								/>
 								{/* {errors?.name && (
@@ -111,7 +155,9 @@ const Profile = () => {
 									maxLength={50}
 									minLength={10}
 									value={inputAddress || ""}
-									onChange={(e) => setInputAddress(e.target.value)}
+									onChange={(e) =>
+										setInputAddress(e.target.value)
+									}
 									required
 								/>
 								{/* {errors?.name && (

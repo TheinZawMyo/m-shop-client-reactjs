@@ -1,15 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../assets/css/form.css";
 import { FaFacebookSquare, FaGooglePlusSquare } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import { omit } from "lodash";
 import { LoginUser } from "../actions/Action";
 import welcome from '../assets/images/welcome.svg';
+import Service from "../Services/Service";
 
 const Login = () => {
 	const [values, setValues] = useState({});
 	const [errors, setErrors] = useState({});
 	const { authDispatch, message } = useContext(AuthContext);
+	const [googleUrl, setGoogleUrl] = useState('');
 	const handleChange = (e) => {
 		e.persist();
 		let name = e.target.name;
@@ -79,6 +81,15 @@ const Login = () => {
 			});
 		}
 	};
+
+	useEffect(() => {
+		Service.googleUrl().then((res) => {
+			// console.log(res.data.url);
+			setGoogleUrl(res.data.url);
+		})
+		.catch(err => console.log(err));
+	}, []);
+
 	return (
 		<div className="login_container">
 			<div className="login_img col">
@@ -130,17 +141,17 @@ const Login = () => {
 					<div className="form_field">
 						<button className="btn primary_btn">Sign In</button>
 					</div>
-					<span>Or sign in with</span>
-					<div className="social_acc">
+					{/* <span>Or sign in with</span> */}
+					{/* <div className="social_acc">
 						<span className="social_btn facebook">
 							<FaFacebookSquare className="social_icon" />{" "}
 							FaceBook
 						</span>
-						<span className="social_btn google">
+						<a className="social_btn google" href={googleUrl}>
 							<FaGooglePlusSquare className="social_icon" />{" "}
 							Google
-						</span>
-					</div>
+						</a>
+					</div> */}
 				</form>
 			</div>
 		</div>

@@ -259,3 +259,26 @@
 	color: gray;
 	font-size: 12px;
 }
+
+
+/* table */
+.table {
+	width: 100%;
+}
+
+.order_table {
+	overflow-y: hidden;
+}
+
+th, td {
+	border: 2px solid var(--text-color);
+	text-align: center;
+}
+
+.txt_warning {
+	color: var(--primary-color);
+}
+
+.txt_success {
+	color: rgb(132, 214, 9);
+}
