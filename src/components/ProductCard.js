@@ -32,7 +32,7 @@ const ProductCard = (props) => {
 						</Link>
 					</div> */}
 						<span className="order_flg">
-							{product.stock === 1 ? "Instock" : "PreOrder"}
+							{product.stock === true ? "Instock" : "PreOrder"}
 						</span>
 						<div className="rate_container">
 							<AiFillStar />
