@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "../assets/css/form.css";
-import { FaFacebookSquare, FaGooglePlusSquare } from "react-icons/fa";
+// import { FaFacebookSquare, FaGooglePlusSquare } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import { omit } from "lodash";
 import { LoginUser } from "../actions/Action";
@@ -11,7 +11,7 @@ const Login = () => {
 	const [values, setValues] = useState({});
 	const [errors, setErrors] = useState({});
 	const { authDispatch, message } = useContext(AuthContext);
-	const [googleUrl, setGoogleUrl] = useState('');
+	// const [googleUrl, setGoogleUrl] = useState('');
 	const handleChange = (e) => {
 		e.persist();
 		let name = e.target.name;
@@ -85,7 +85,7 @@ const Login = () => {
 	useEffect(() => {
 		Service.googleUrl().then((res) => {
 			// console.log(res.data.url);
-			setGoogleUrl(res.data.url);
+			// setGoogleUrl(res.data.url);
 		})
 		.catch(err => console.log(err));
 	}, []);

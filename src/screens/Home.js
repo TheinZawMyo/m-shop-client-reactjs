@@ -32,7 +32,7 @@ function Home() {
 
 	useEffect(() => {
 		getData(1, keyword);
-	}, [keyword]);
+	}, []);
 
 	return (
 		<div className="container">

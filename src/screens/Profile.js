@@ -1,8 +1,8 @@
-import react, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Register from "../components/Register";
 import Login from "../components/Login";
 import { AuthContext } from "../context/AuthContext";
-import { googleLogin, updateProfile, userDetail } from "../actions/Action";
+import { updateProfile, userDetail } from "../actions/Action";
 import { useAlert } from "react-alert";
 
 const Profile = () => {

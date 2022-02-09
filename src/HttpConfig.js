@@ -10,7 +10,7 @@ import axios from "axios";
 
 const http = () => {
 	const defaultOptions = {
-		baseURL: "http://127.0.0.1:8000/api/",
+		baseURL: "http://m-shop-mm.herokuapp.com/api/",
 		headers: {
 			"Content-type": "application/json",
 		},

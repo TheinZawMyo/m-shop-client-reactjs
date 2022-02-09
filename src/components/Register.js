@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "../assets/css/form.css";
-import { FaFacebookSquare, FaGooglePlusSquare } from "react-icons/fa";
+// import { FaFacebookSquare, FaGooglePlusSquare } from "react-icons/fa";
 import { omit } from "lodash";
 import { RegisterUser } from "../actions/Action";
 import { AuthContext } from "../context/AuthContext";
