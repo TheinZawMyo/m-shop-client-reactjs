@@ -18,7 +18,7 @@ const Profile = () => {
 		user && userDetail(authDispatch, user?.id);
 		user && setInputPhone(user.phone);
 		user && setInputAddress(user.address);
-	}, [user.id]);
+	}, [user.id, user, authDispatch]);
 
 	// console.log(user.address);
 

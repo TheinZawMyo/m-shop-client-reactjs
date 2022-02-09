@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import mobile from "../assets/images/mobile.svg";
 import "../assets/css/home.css";
 import ProductCard from "../components/ProductCard";
@@ -22,17 +22,19 @@ function Home() {
 		setInput("");
 	};
 
-	const getData = (page = 1) => {
+	
+	const getData = useCallback(async(page = 1) => {
 		try {
 			GetItem(dispatch, keyword, page);
 		}catch(error){
 			console.log(error);
 		}
-	};
+	}, [dispatch, keyword]);
 
 	useEffect(() => {
+
 		getData(1, keyword);
-	}, []);
+	}, [keyword, getData]);
 
 	return (
 		<div className="container">
