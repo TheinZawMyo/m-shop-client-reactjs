@@ -15,12 +15,12 @@ const Profile = () => {
 	// console.log(orderList);
 
 	useEffect(() => {
-		user && userDetail(authDispatch, user?.id);
-		user && setInputPhone(user.phone);
-		user && setInputAddress(user.address);
-	}, [user.id, user, authDispatch]);
+		user.id && userDetail(authDispatch, user?.id);
+		user.id && setInputPhone(user.phone);
+		user.id && setInputAddress(user.address);
+	}, [user.id, authDispatch, user.phone, user.address]);
 
-	// console.log(user.address);
+	// console.log(user);
 
 	const link =
 		loginForm === false ? (
