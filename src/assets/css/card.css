@@ -282,3 +282,9 @@ th, td {
 .txt_success {
 	color: rgb(132, 214, 9);
 }
+
+.threeDots {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

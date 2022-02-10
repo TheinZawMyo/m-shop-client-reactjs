@@ -5,6 +5,7 @@ export const ProductContext = createContext();
 
 const initialState = {
 	per_page: null,
+	isLoading: true,
 	current_page: null,
 	total: 0,
 	products: [],
@@ -22,6 +23,7 @@ const ProductContextProvider = (props) => {
 				current_page: state.current_page,
 				total: state.total,
 				dispatch,
+				isLoading: state.isLoading
 			}}
 		>
 			{props.children}

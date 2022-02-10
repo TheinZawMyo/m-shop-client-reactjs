@@ -6,11 +6,13 @@ import { ProductContext } from "../context/ProductContext";
 import { GetItem } from "../actions/Action";
 import { BiX } from "react-icons/bi";
 import ReactPaginate from "react-js-pagination";
+import { ThreeDots } from "react-loader-spinner";
 
 function Home() {
 	const [input, setInput] = useState("");
 	const [keyword, setKeyword] = useState("");
-	const { dispatch, current_page, per_page, total } = useContext(ProductContext);
+	const { isLoading, dispatch, current_page, per_page, total } =
+		useContext(ProductContext);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
@@ -22,17 +24,18 @@ function Home() {
 		setInput("");
 	};
 
-	
-	const getData = useCallback(async(page = 1) => {
-		try {
-			GetItem(dispatch, keyword, page);
-		}catch(error){
-			console.log(error);
-		}
-	}, [dispatch, keyword]);
+	const getData = useCallback(
+		async (page = 1) => {
+			try {
+				GetItem(dispatch, keyword, page);
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		[dispatch, keyword]
+	);
 
 	useEffect(() => {
-
 		getData(1, keyword);
 	}, [keyword, getData]);
 
@@ -71,9 +74,19 @@ function Home() {
 				</button>
 			</div>
 
-			<div className="card_container">
-				<ProductCard />
-			</div>
+			{isLoading ? (
+				<div className="threeDots">
+				<ThreeDots
+					color="#f6b60d"
+					height={80}
+					width={80}
+				/></div>
+			) : (
+				<div className="card_container">
+					<ProductCard />
+				</div>
+			)}
+
 			<ReactPaginate
 				activePage={parseInt(current_page)}
 				totalItemsCount={total - 12}

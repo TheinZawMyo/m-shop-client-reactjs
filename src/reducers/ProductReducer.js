@@ -6,6 +6,7 @@ export const ProductReducer = (state, action) => {
                 current_page: action.payload.current_page,
                 per_page: action.payload.per_page,
                 total: action.payload.total, 
+                isLoading: false,
                 products: action.payload.products,
             };
             
